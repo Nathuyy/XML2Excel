@@ -131,6 +131,12 @@ class MainWindow:
                 'Vlr Total IPI': self.get_text_from_element(root, './/nfe:total/nfe:ICMSTot/nfe:vIPI', ns),
                 'Vlr Total PIS': self.get_text_from_element(root, './/nfe:total/nfe:ICMSTot/nfe:vPIS', ns),
                 'Vlr Total Cofins': self.get_text_from_element(root, './/nfe:total/nfe:ICMSTot/nfe:vCOFINS', ns),
+                'Meio Pagamento': self.get_text_from_element(root, './/nfe:pag/nfe:detPag/nfe:tPag', ns),
+                'Vlr Pagamento': self.get_text_from_element(root, './/nfe:pag/nfe:detPag/nfe:vPag', ns),
+                'Tipo Integração Pagamento': self.get_text_from_element(root, './/nfe:pag/nfe:detPag/nfe:card/nfe:tpIntegra', ns),
+                'CNPJ Instituição Pagamento': self.get_text_from_element(root, './/nfe:pag/nfe:detPag/nfe:card/nfe:CNPJ', ns),
+                'Bandeira Operadora Cartão Crédito/Débito': self.get_text_from_element(root, './/nfe:pag/nfe:detPag/nfe:card/nfe:tBand', ns),
+                'Número Autorização Operação Cartão Crédito/Débito': self.get_text_from_element(root, './/nfe:pag/nfe:detPag/nfe:card/nfe:cAut', ns)
                 # 'Vlr Total ISSQN': 
                 # 'Vlr Total PIS Serviços':
                 # 'Vlr Total Cofins Serviços':
