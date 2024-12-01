@@ -55,3 +55,53 @@ def process_xml_identificacao(xml_file):
     except Exception as e:
         print(f"Erro ao processar o arquivo {xml_file}: {str(e)}")
         return None
+
+
+def process_xml_307(xml_file):
+    """Processa XML e extrai todos os detalhes de produtos e impostos"""
+    try:
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
+        ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
+
+
+        # Itera por todos os elementos <det> no XML
+        for det in root.findall('.//nfe:det', ns):  # Garanta que esteja buscando todos os elementos <det>
+            nItem = det.get('nItem')
+            prod = det.find('nfe:prod', ns)
+            imposto = det.find('nfe:imposto', ns)
+
+            # Extrai os detalhes do produto
+            cProd = prod.find('nfe:cProd', ns) if prod.find('nfe:cProd', ns) is not None else None
+            cEAN = prod.find('nfe:cEAN', ns) if prod.find('nfe:cEAN', ns) is not None else None
+            xProd = prod.find('nfe:xProd', ns) if prod.find('nfe:xProd', ns) is not None else None
+            NCM = prod.find('nfe:NCM', ns) if prod.find('nfe:NCM', ns) is not None else None
+            vProd = prod.find('nfe:vProd', ns) if prod.find('nfe:vProd', ns) is not None else None
+
+            # Extrai detalhes do imposto (exemplo para ICMS)
+            vTotTrib = imposto.find('.//nfe:vTotTrib', ns) if imposto is not None else None
+            vICMSEfet = imposto.find('.//nfe:ICMS60/nfe:vICMSEfet', ns) if imposto is not None else None
+
+            # Adiciona os dados do produto à lista
+            data = {
+                'nItem': nItem,
+                'cProd': cProd.text if cProd is not None else '',
+                'cEAN': cEAN.text if cEAN is not None else '',
+                'xProd': xProd.text if xProd is not None else '',
+                'NCM': NCM.text if NCM is not None else '',
+                'vProd': vProd.text if vProd is not None else '',
+                'vTotTrib': vTotTrib.text if vTotTrib is not None else '',
+                'vICMSEfet': vICMSEfet.text if vICMSEfet is not None else ''
+            }
+                
+            
+            
+            print (data)
+
+            
+
+        return data
+
+    except Exception as e:
+        print(f"Erro ao processar o arquivo {xml_file}: {str(e)}")
+        return None

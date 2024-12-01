@@ -2,7 +2,7 @@ import os
 import tkinter as tk
 from tkinter import filedialog, messagebox
 import pandas as pd
-from process_xml import process_xml_identificacao
+from process_xml import process_xml_identificacao, process_xml_307
 
 class MainWindow:
     def __init__(self, root):
@@ -90,58 +90,9 @@ class MainWindow:
             },
             "Detalhamento de Produtos e Serviços e Tributos - Completo": {
                 "columns": [
-                    "Período", "Chave NF-e", "Situação", "Data Situação", "Natureza Operação", "Indicador Forma Pagamento", "Modelo", "Série", 
-                    "Número Documento", "Data Emissão Documento", "Data Entrada/Saída", "Tipo Operação", "Finalidade Emissão", 
-                    "Indicador Operação Consumidor", "Indicador Presença Comprador", "Tipo Emissão", "Data/Hora Contingência", 
-                    "Justificativa Contingência", "CNPJ/CPF Emitente", "Inscrição Estadual Emitente", "Nome Emitente", "Nome Fantasia Emitente", 
-                    "Logradouro Emitente", "Número Emitente", "Complemento Emitente", "Bairro Emitente", "Município Emitente", "UF Emitente", 
-                    "CEP Emitente", "Fone Emitente", "Inscrição Estadual ST Emitente", "Inscrição Municipal Emitente", "CNAE Fiscal Emitente", 
-                    "Regime Tributário Emitente", "CNPJ/CPF Destinatário", "Inscrição Estadual Destinatário", "ID Estrangeiro Destinatário", 
-                    "Nome Destinatário", "SUFRAMA", "Logradouro Destinatário", "Número Destinatário", "Complemento Destinatário", 
-                    "Bairro Destinatário", "Município Destinatário", "UF Destinatário", "CEP Destinatário", "País Destinatário", "Fone Destinatário", 
-                    "Indicador Contribuinte Destinatário", "SUFRAMA Destinatário", "Inscrição Municipal Destinatário", "E-mail Destinatário", 
-                    "CNPJ/CPF Retirada", "Logradouro Retirada", "Número Retirada", "Complemento Retirada", "Bairro Retirada", "Município Retirada", 
-                    "UF Retirada", "Nome Expedidor", "CEP", "Código País", "Nome País", "Telefone", "E-mail", "Inscrição Estadual Expedidor", 
-                    "CNPJ/CPF Entrega", "Logradouro Entrega", "Número Entrega", "Complemento Entrega", "Bairro Entrega", "Município Entrega", 
-                    "UF Entrega", "Nome Entrega", "CEP Entrega", "Código País Entrega", "Nome País Entrega", "Telefone Entrega", "E-mail Entrega", 
-                    "Inscrição Estadual Entrega", "Vlr Total Base Cálculo ICMS", "Vlr Total ICMS", "Vlr Total ICMS Desonerado", "Vlr Total Base Cálculo ICMS ST", 
-                    "Vlr Total ICMS ST", "Vlr Total Produto", "Vlr Total Frete", "Vlr Total Seguro", "Vlr Total Desconto", "Vlr Total II", 
-                    "Vlr Total IPI", "Vlr Total PIS", "Vlr Total Cofins", "Vlr Total Outras Despesas", "Vlr Total NF-e", "Vlr Total Aproximado Tributos", 
-                    "Vlr Total Serviços", "Vlr Total Base Cálculo ISSQN", "Vlr Total ISSQN", "Vlr Total PIS Serviços", "Vlr Total Cofins Serviços", 
-                    "Data Prestação Serviços", "Vlr Total Redução Base Serviços", "Vlr Total Outras Retenções Serviços", "Vlr Total Desconto Incondicional Serviços", 
-                    "Vlr Total Desconto Condicional Serviços", "Vlr Total Retenção ISSQN", "Modalidade Frete", "CNPJ/CPF Transportador", 
-                    "Nome Transportador", "Inscrição Estadual Transportador", "Endereço Transportador", "Município Transportador", "UF Transportador", 
-                    "Vlr Serviço", "Vlr Base Retenção ICMS", "Alíquota Retenção", "Vlr ICMS Retido", "CFOP Retenção", "Código Município FG", 
-                    "Placa Veículo", "UF Veículo", "RNTC Veículo", "Placa Reboque", "UF Reboque", "RNTC Reboque", "Vagão", "Balsa", 
-                    "Qtde Volume Transportado", "Espécie Volume Transportado", "Marca Volume Transportado", "Peso Líquido", "Peso Bruto", 
-                    "Informação Adicional Fisco", "Informação Adicional Contribuinte", "Número Item", "Código Item", "EAN", "Descrição Item", 
-                    "NCM", "CEST", "Código Benefício", "Ex TIPI", "CFOP", "Unidade Comercial", "Qtde", "Vlr Unitário", "Vlr Total Produtos", 
-                    "EAN Tributável", "Unidade Tributável", "Quantidade Tributável", "Vlr Frete Item", "Vlr Seguro Item", "Vlr Desconto Item", 
-                    "Vlr Outas Despesas Item", "Número FCI", "Número Pedido Compra", "Item Pedido Compra", "Número DI", "Data DI", 
-                    "Local Desembaraço", "UF Desembaraço", "Data Desembaraço", "Número Lote Produto", "Qtde Produto Lote", "Data Fabricação/Produção", 
-                    "Data Validade", "Código Agregação", "Informação Adicional Produto", "Tipo Operação Venda", "Chassi Veículo", "Tipo Combustível", 
-                    "Ano/Modelo Fabricação", "Ano Fabricação", "Tipo Veículo", "Espécie Veículo", "VIN - Chassi Remarcado", "Capacidade Lotação", 
-                    "Restrição", "Origem CST ICMS", "CST ICMS", "Modalidade Base Cálculo ICMS", "Qtde Tributada", "Alíquota ad rem ICMS", 
-                    "Vlr ICMS Próprio", "Qtde Tributada Retenção", "Alíquota ad rem ICMS Retenção", "Vlr ICMS Retido", "Percentual Redução adrem", 
-                    "Motivo Redução adrem", "Qtde Tributada Diferida", "Alíquota ad rem ICMS Diferido", "Vlr ICMS Monofásico Diferido", 
-                    "Vlr ICMS Monofásico Operação", "Qtde Tributada Retida Anteriormente", "Alíquota ad rem Retido Anteriormente", 
-                    "Vlr ICMS Retido Anteriormente", "Percentual Redução ICMS", "Vlr Base Cálculo ICMS", "Alíquota ICMS", "Vlr ICMS Operação Diferimento", 
-                    "Percentual Diferimento", "Vlr ICMS Diferido", "Vlr ICMS", "Percentual Redução Base Efetiva", "Vlr Base Cálculo Efetiva", 
-                    "Alíquota ICMS Efetiva", "Vlr ICMS Efetivo", "Vlr ICMS Substituto", "Vlr Base Cálculo ICMS Destinatário", "Vlr ICMS Destinatário", 
-                    "Modalidade Base Cálculo ICMS ST", "Percentual MVA", "Percentual Redução Base ICMS ST", "Vlr Base Cálculo ICMS ST", 
-                    "Alíquota ICMS ST", "Vlr ICMS ST", "Vlr Base Cálculo ICMS ST Retido", "Vlr ICMS ST Retido", "Vlr ICMS Desonerado", 
-                    "Motivo Desoneração ICMS", "Percentual Base Cálculo Operação Própria", "UF Devido ICMS ST", "Alíquota Crédito Simples", 
-                    "Vlr Crédito Simples", "Vlr Base Cálculo FCP", "Alíquota FCP", "Vlr FCP", "Vlr Base Cálculo FCP ST", "Alíquota FCP ST", 
-                    "Vlr FCP ST", "Vlr Base Cálculo FCP Retido Anteriormente ST", "Alíquota FCP Retido Anteriormente ST", "Vlr FCP Retido Anteriormente ST", 
-                    "Vlr Base Cálculo ICMS UF Destino", "Vlr Base Cálculo FCP UF Destino", "Percentual ICMS Relativo FCP UF Destino", 
-                    "Alíquota Interna UF Destino", "Alíquota Interestadual UF Envolvidas", "Percentual Provisório Partilha ICMS Interestadual", 
-                    "Vlr ICMS Relativo FCP UF Destino", "Vlr ICMS Interestadual UF Destino", "Vlr ICMS Interestadual UF Remetente", 
-                    "Vlr Total ICMS Relativo FCP UF Destino", "Vlr Total ICMS Interestadual UF Destino", "Vlr Total ICMS Interestadual UF Remetente", 
-                    "Vlr Total FCP Retido Anteriormente ST", "Classe Enquadramento IPI", "CST IPI", "Vlr Base Cálculo IPI", "Alíquota IPI", 
-                    "Vlr IPI", "Vlr Base Cálculo PIS", "Alíquota PIS", "Vlr PIS", "Vlr Base Cálculo COFINS", "Alíquota COFINS", "Vlr COFINS", 
-                    "Base Cálculo ISSQN", "Alíquota ISSQN", "Vlr ISSQN", "Vlr Retenção ISSQN", "Código Receita", "Observações", "Tag NFe"
+                    "nItem", "cProd", "cEAN", "xProd", "NCM", "vProd", "vTotTrib", "vICMSEfet"
                 ],
-                "process_func": process_xml_identificacao
+                "process_func": process_xml_307
             }
         }
 
