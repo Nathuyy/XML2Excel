@@ -64,26 +64,27 @@ def process_xml_307(xml_file):
         root = tree.getroot()
         ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
 
+        produtos = []
 
         # Itera por todos os elementos <det> no XML
-        for det in root.findall('.//nfe:det', ns):  # Garanta que esteja buscando todos os elementos <det>
+        for det in root.findall('.//nfe:det', ns):  # Busca todos os elementos <det>
             nItem = det.get('nItem')
             prod = det.find('nfe:prod', ns)
             imposto = det.find('nfe:imposto', ns)
 
             # Extrai os detalhes do produto
-            cProd = prod.find('nfe:cProd', ns) if prod.find('nfe:cProd', ns) is not None else None
-            cEAN = prod.find('nfe:cEAN', ns) if prod.find('nfe:cEAN', ns) is not None else None
-            xProd = prod.find('nfe:xProd', ns) if prod.find('nfe:xProd', ns) is not None else None
-            NCM = prod.find('nfe:NCM', ns) if prod.find('nfe:NCM', ns) is not None else None
-            vProd = prod.find('nfe:vProd', ns) if prod.find('nfe:vProd', ns) is not None else None
+            cProd = prod.find('nfe:cProd', ns) if prod is not None else None
+            cEAN = prod.find('nfe:cEAN', ns) if prod is not None else None
+            xProd = prod.find('nfe:xProd', ns) if prod is not None else None
+            NCM = prod.find('nfe:NCM', ns) if prod is not None else None
+            vProd = prod.find('nfe:vProd', ns) if prod is not None else None
 
             # Extrai detalhes do imposto (exemplo para ICMS)
             vTotTrib = imposto.find('.//nfe:vTotTrib', ns) if imposto is not None else None
             vICMSEfet = imposto.find('.//nfe:ICMS60/nfe:vICMSEfet', ns) if imposto is not None else None
 
             # Adiciona os dados do produto à lista
-            data = {
+            produto_data = {
                 'nItem': nItem,
                 'cProd': cProd.text if cProd is not None else '',
                 'cEAN': cEAN.text if cEAN is not None else '',
@@ -93,14 +94,10 @@ def process_xml_307(xml_file):
                 'vTotTrib': vTotTrib.text if vTotTrib is not None else '',
                 'vICMSEfet': vICMSEfet.text if vICMSEfet is not None else ''
             }
-                
-            
-            
-            print (data)
 
-            
+            produtos.append(produto_data)
 
-        return data
+        return produtos
 
     except Exception as e:
         print(f"Erro ao processar o arquivo {xml_file}: {str(e)}")

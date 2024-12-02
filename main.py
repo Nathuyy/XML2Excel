@@ -101,15 +101,33 @@ class MainWindow:
             return
 
         config = options[tipo]
-        data = [config["process_func"](os.path.join(self.folder_path, xml_file)) for xml_file in xml_files]
+        processed_data = []
 
-        if data:
-            df = pd.DataFrame(data, columns=config["columns"])
-            excel_path = os.path.join(self.folder_path, f"relatorio_{tipo.replace(' ', '_').lower()}.xlsx")
-            df.to_excel(excel_path, index=False)
-            messagebox.showinfo("Sucesso", f"Arquivo Excel gerado com sucesso em {excel_path}")
+        for xml_file in xml_files:
+            try:
+                results = config["process_func"](os.path.join(self.folder_path, xml_file))
+                
+                if isinstance(results, list):
+                    processed_data.extend(results)
+                elif isinstance(results, dict):  
+                    processed_data.append(list(results.values()))
+                else:
+                    raise ValueError("Formato de dados inesperado.")
+            except Exception as e:
+                messagebox.showwarning("Erro", f"Erro ao processar {xml_file}: {e}")
+                continue
+
+        if processed_data:
+            try:
+                df = pd.DataFrame(processed_data, columns=config["columns"])
+                excel_path = os.path.join(self.folder_path, f"relatorio_{tipo.replace(' ', '_').lower()}.xlsx")
+                df.to_excel(excel_path, index=False)
+                messagebox.showinfo("Sucesso", f"Arquivo Excel gerado com sucesso em {excel_path}")
+            except Exception as e:
+                messagebox.showerror("Erro", f"Erro ao salvar o Excel: {e}")
         else:
             messagebox.showwarning("Aviso", "Nenhuma informação foi extraída dos arquivos XML.")
+
 
 
 if __name__ == "__main__":
