@@ -25,7 +25,7 @@ Este é um aplicativo simples em Python usando a biblioteca Tkinter, que permite
 2. Instale as dependências necessárias:
 3. Execute o arquivo `main.py` para abrir a interface gráfica:
    ```bash
-   python main.py
+   python3 main.py
 4. Selecione uma pasta contendo arquivos XML.
 5. Escolha o tipo de conversão desejado.
 6. O arquivo Excel será gerado na mesma pasta.
