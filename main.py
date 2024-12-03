@@ -90,7 +90,15 @@ class MainWindow:
             },
             "Detalhamento de Produtos e Serviços e Tributos - Completo": {
                 "columns": [
-                    "nItem", "cProd", "cEAN", "xProd", "NCM", "vProd", "vTotTrib", "vICMSEfet"
+                    "Período", "Chave NF-e", "Situação", "Data Situação", "Natureza Operação", "Modelo", "Série","Número Documento", "Data Emissão Documento","Tipo Operação", "Finalidade Emissão", 
+                    "Indicador Operação Consumidor", "Indicador Presença Comprador", "Tipo Emissão", "CNPJ/CPF Emitente", "Inscrição Estadual Emitente", "Nome Emitente", "Logradouro Emitente","Número Emitente", 
+                    "Bairro Emitente", "Município Emitente", "UF Emitente","CEP Emitente", "Fone Emitente","Regime Tributário Emitente","CNPJ/CPF Destinatário","Nome Destinatário","Logradouro Destinatário","Número Destinatário",
+                    "Bairro Destinatário","Município Destinatário","UF Destinatário", "Indicador Contribuinte Destinatário","Vlr Total Base Cálculo ICMS","Vlr Total ICMS","Vlr Total ICMS Desonerado",
+                    "Vlr Total Base Cálculo ICMS ST", "Vlr Total ICMS ST","Vlr Total Produto","Vlr Total Frete","Vlr Total Seguro","Vlr Total Desconto","Vlr Total II","Vlr Total IPI",
+                    "Vlr Total PIS", "Vlr Total Cofins","Vlr Total Outras Despesas","Vlr Total NF-e","Vlr Total Aproximado Tributos", "Modalidade Frete", "Informação Adicional Contribuinte", 
+                    "Número Item", "Código Item", "EAN", "Descrição Item","Código Benefício", "NCM", "Ex TIPI","CFOP", "Qtde","Vlr Unitário", "Vlr Total Produtos", "EAN Tributável", "CST ICMS",
+                    "Modalidade Base Cálculo ICMS", "Percentual Redução ICMS", "Alíquota ICMS","Vlr ICMS Operação Diferimento", "Vlr Base Cálculo Efetiva","Alíquota ICMS Efetiva",
+                    "Vlr ICMS Efetivo", "Vlr ICMS Substituto", "Vlr Base Cálculo FCP", "CST PIS", "Vlr Base Cálculo PIS","Alíquota PIS","Vlr PIS","CST Cofins","Vlr Base Cálculo Cofins","Alíquota Cofins", "Vlr Cofins"
                 ],
                 "process_func": process_xml_307
             }
