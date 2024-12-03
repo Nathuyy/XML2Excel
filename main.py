@@ -33,6 +33,12 @@ class MainWindow:
             command=lambda: self.convert_to_excel("NF-e Identificação e Pagamento")
         )
         self.button_pagamento.pack(pady=5)
+
+        self.button_referencia = tk.Button(
+            root, text="302 - Identificação da NF-e-NFC-e e Documento Fiscal Referenciado - FALTA DADOS", 
+            command=lambda: self.convert_to_excel("Identificação da NF-e-NFC-e e Documento Fiscal Referenciado")
+        )
+        self.button_referencia.pack(pady=5)
         
         self.button_referencia = tk.Button(
             root, text="307 - Detalhamento de Produtos e Serviços e Tributos - Completo", 
@@ -101,7 +107,23 @@ class MainWindow:
                     "Vlr ICMS Efetivo", "Vlr ICMS Substituto", "Vlr Base Cálculo FCP", "CST PIS", "Vlr Base Cálculo PIS","Alíquota PIS","Vlr PIS","CST Cofins","Vlr Base Cálculo Cofins","Alíquota Cofins", "Vlr Cofins"
                 ],
                 "process_func": process_xml_307
+            },
+            "Identificação da NF-e-NFC-e e Documento Fiscal Referenciado": {
+                "columns": [
+                    "Período", "Chave NF-e", "Situação", "Modelo", "Série", "Número", "Documento", "Data Emissão Documento", "Tipo Operação", "Finalidade Emissão", 
+                    "Indicador Operação Consumidor", "Indicador Presença Comprador", "CNPJ/CPF Emitente", "Inscrição Estadual Emitente", "Nome Emitente", "UF Emitente", 
+                    "CNPJ/CPF Destinatário", "Inscrição Estadual Destinatário", "Nome Destinatário", "UF Destinatário", "SUFRAMA", "CNPJ/CPF Transportador", "Nome Transportador", 
+                    "Vlr Total NF-e", "Vlr Total Produto", "Vlr Total Serviços", "Vlr Total ICMS", "Vlr Total ICMS ST", "Vlr Total Frete", "Vlr Total Seguro", 
+                    "Vlr Total Desconto Produto", "Vlr Total Desconto Incondicional Serviços", "Vlr Total Desconto Condicional Serviços", "Vlr Total Outras Despesas", 
+                    "Vlr Total II", "Vlr Total IPI", "Vlr Total PIS", "Vlr Total Cofins", "Vlr Total ISSQN", "Vlr Total PIS Serviços", "Vlr Total Cofins Serviços", 
+                    "Vlr Total Retenção ISSQN", "Informação Adicional Fisco", "Informação Adicionais Contribuinte", "Chave NF-e Referenciada", "Chave CT-e Referenciada", 
+                    "Código UF Emitente Referenciada", "Ano/Mês Emissão Referenciada", "CNPJ Emitente Referenciada", "CPF Emitente Referenciada", 
+                    "Inscrição Estadual Emitente Referenciada", "Modelo Referenciada", "Série Referenciada", "Número Documento Referenciada", 
+                    "Número Ordem Sequencial ECF Referenciada", "Contador Ordem Operação COO Referenciada"
+            ],
+                "process_func": process_xml_identificacao
             }
+
         }
 
         if tipo not in options:
